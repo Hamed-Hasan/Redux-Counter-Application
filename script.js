@@ -53,3 +53,44 @@ const initialState = {
         },
     ],
 }
+
+// create reducer function
+function counterReducer(state = initialState, action) {
+if(action.type === INCREMENT){
+    return{
+        ...state,
+        counters: state.counters.map((counter) => 
+        counter.id === action.payload.id ? {...counter, value: counter.value + counter.increaseBy } : {...counter}
+        )
+    }
+} else if(action.type === DECREMENT){
+    return{
+        ...state,
+        counters: state.counters.map((counter) => 
+        counter.id === action.payload.id ? {...counter, value: counter.value - counter.increaseBy } : {...counter}
+        )
+    }
+}else if(action.type === ADD_COUNTER){
+    return{
+        ...state,
+        counters: [
+            ...state.counters,
+            {
+                id: state.counters.length + 1,
+                value: action.payload.defaultValue,
+                ...action.payload,
+            },
+        ],
+    }
+}else if(action.type === RESET_COUNTER){
+    return {
+        ...state,
+        counters: state.counters.map((counter) => ({
+            ...counter, 
+            value: counter.defaultValue,
+        })),
+    }
+}else {
+    return state
+}
+}
