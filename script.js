@@ -26,3 +26,30 @@ const decrement = (counter) => {
         payload: counter,
     }
 }
+
+// add counter
+const addCounter = (counter) => {
+    return {
+        type: ADD_COUNTER,
+        payload: counter,
+    }
+}
+
+// reset all counter
+const resetCounter = () => {
+    return {
+        type: RESET_COUNTER,
+    }
+}
+
+// initial state 
+const initialState = {
+    counters: [
+        {
+            id: 0,
+            value: 0,
+            increaseBy: 1,
+            defaultValue: 0,
+        },
+    ],
+}
